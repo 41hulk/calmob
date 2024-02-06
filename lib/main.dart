@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -27,7 +28,6 @@ class _HomePageState extends State<HomePage> {
   var userAnswer = '';
 
   final myTextStyle = TextStyle(fontSize: 30, color: Colors.deepPurple[900]);
-  shared
   final List<String> buttons = [
     'C',
     'DEL',
