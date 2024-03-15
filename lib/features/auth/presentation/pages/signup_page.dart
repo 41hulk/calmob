@@ -12,6 +12,10 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final nameController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,15 +32,24 @@ class _SignUpPageState extends State<SignUpPage> {
                   color: Colors.white),
             ),
             const SizedBox(height: 20),
-            AuthField(hintText: 'name'),
+            AuthField(
+              hintText: 'name',
+              controller: nameController,
+            ),
             const SizedBox(
               height: 15,
             ),
-            AuthField(hintText: 'email'),
+            AuthField(
+              hintText: 'email',
+              controller: emailController,
+            ),
             const SizedBox(
               height: 15,
             ),
-            AuthField(hintText: 'password'),
+            AuthField(
+              hintText: 'password',
+              controller: passwordController,
+            ),
             const SizedBox(
               height: 15,
             ),
