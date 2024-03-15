@@ -1,3 +1,4 @@
+import 'package:calc/core/theme/app_pallete.dart';
 import 'package:calc/features/auth/presentation/widgets/auth_field.dart';
 import 'package:calc/features/auth/presentation/widgets/auth_gradient_button.dart';
 import 'package:flutter/material.dart';
@@ -20,26 +21,44 @@ class _SignUpPageState extends State<SignUpPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Signup",
+              "signup",
               style: GoogleFonts.manrope(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
                   color: Colors.white),
             ),
             const SizedBox(height: 20),
-            AuthField(hintText: 'Name'),
+            AuthField(hintText: 'name'),
             const SizedBox(
               height: 15,
             ),
-            AuthField(hintText: 'Email'),
+            AuthField(hintText: 'email'),
             const SizedBox(
               height: 15,
             ),
-            AuthField(hintText: 'Password'),
+            AuthField(hintText: 'password'),
             const SizedBox(
               height: 15,
             ),
             AuthGradientButton(),
+            const SizedBox(
+              height: 20,
+            ),
+            RichText(
+              text: TextSpan(
+                text: 'Already have an account? ',
+                style: Theme.of(context).textTheme.titleMedium,
+                children: [
+                  TextSpan(
+                    text: 'Sign In',
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          color: AppPallete.gradient2,
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),
