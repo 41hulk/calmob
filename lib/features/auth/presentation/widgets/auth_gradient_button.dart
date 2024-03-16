@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AuthGradientButton extends StatelessWidget {
-  const AuthGradientButton({super.key});
+  final String buttonText;
+  const AuthGradientButton({super.key, required this.buttonText});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class AuthGradientButton extends StatelessWidget {
           backgroundColor: AppPallete.transparentColor,
           shadowColor: AppPallete.transparentColor,
         ),
-        child: Text('Sign Up',
+        child: Text(buttonText,
             style: GoogleFonts.manrope(
               fontSize: 17,
               fontWeight: FontWeight.w600,
