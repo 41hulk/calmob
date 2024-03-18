@@ -19,6 +19,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           name: event.name,
         ),
       );
+      print(res);
       res.fold(
         (l) => emit(AuthFailure(l.message)),
         (uid) => emit(
@@ -27,22 +28,4 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       );
     });
   }
-
-  // void _onAuthSignUp(
-  //   AuthSignUp event,
-  //   Emitter<AuthState> emit,
-  // ) async {
-  //   final res = await _userSignUp(
-  //     UserSignUpParams(
-  //       email: event.email,
-  //       password: event.password,
-  //       name: event.name,
-  //     ),
-  //   );
-
-  //   res.fold(
-  //     (failure) => emit(AuthFailure(failure.message)),
-  //     (user) => _emitAuthSuccess(user, emit),
-  //   );
-  // }
 }
