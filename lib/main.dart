@@ -1,8 +1,12 @@
 import 'package:calc/core/secrets/supabase_secrets.dart';
 import 'package:calc/core/theme/theme.dart';
-import 'package:calc/features/auth/presentation/pages/login_page.dart';
-
+import 'package:calc/features/auth/data/datasources/auth_supabase_data_source.dart';
+import 'package:calc/features/auth/data/repositories/auth_repository_impl.dart';
+import 'package:calc/features/auth/domain/usecases/user_sign_up.dart';
+import 'package:calc/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:calc/features/auth/presentation/pages/signup_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
@@ -11,7 +15,18 @@ void main() async {
     url: AppSecrets.supabaseUrl,
     anonKey: AppSecrets.supabaseAnonKey,
   );
-  runApp(const MyApp());
+  runApp(MultiBlocProvider(
+    providers: [
+      BlocProvider(
+        create: (_) => AuthBloc(
+          userSignUp: UserSignUp(
+            AuthRepositoryImpl(AuthRemoteDataSourceImpl(supabase.client)),
+          ),
+        ),
+      )
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -23,6 +38,6 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'quiz app',
         theme: AppTheme.darkThemeMode,
-        home: const LoginPage());
+        home: const SignUpPage());
   }
 }

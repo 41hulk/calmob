@@ -1,8 +1,10 @@
 import 'package:calc/core/theme/app_pallete.dart';
+import 'package:calc/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:calc/features/auth/presentation/pages/login_page.dart';
 import 'package:calc/features/auth/presentation/widgets/auth_field.dart';
 import 'package:calc/features/auth/presentation/widgets/auth_gradient_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
@@ -69,8 +71,16 @@ class _SignUpPageState extends State<SignUpPage> {
               const SizedBox(
                 height: 15,
               ),
-              const AuthGradientButton(
+              AuthGradientButton(
                 buttonText: 'singup',
+                onPressed: () {
+                  if (formKey.currentState!.validate()) {
+                    context.read<AuthBloc>().add(AuthSignUp(
+                        name: nameController.text.trim(),
+                        email: emailController.text.trim(),
+                        password: passwordController.text.trim()));
+                  }
+                },
               ),
               const SizedBox(
                 height: 20,
